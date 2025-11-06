@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Booking Cancellation Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 6px 8px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .cancel {
+            background-color: #ffe5e5;
+            color: #b30000;
+        }
+        .not-cancel {
+            background-color: #e5ffe8;
+            color: #006600;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Hotel Booking Cancellation Prediction</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="lead_time">Lead Time (days before arrival)</label>
+        <input type="number" id="lead_time" name="lead_time" required>
+    </div>
+
+    <div class="form-group">
+        <label for="no_of_special_request">Number of Special Requests</label>
+        <input type="number" id="no_of_special_request" name="no_of_special_request" required>
+    </div>
+
+    <div class="form-group">
+        <label for="avg_rpice_per_room">Average Price per Room</label>
+        <!-- name must match your Flask code: avg_rpice_per_room -->
+        <input type="number" step="0.01" id="avg_rpice_per_room" name="avg_rpice_per_room" required>
+    </div>
+
+    <div class="form-group">
+        <label for="arrival_month">Arrival Month (1–12)</label>
+        <input type="number" id="arrival_month" name="arrival_month" min="1" max="12" required>
+    </div>
+
+    <div class="form-group">
+        <label for="arrival_date">Arrival Day of Month (1–31)</label>
+        <input type="number" id="arrival_date" name="arrival_date" min="1" max="31" required>
+    </div>
+
+    <div class="form-group">
+        <label for="market_segment_type">Market Segment Type</label>
+        <select id="market_segment_type" name="market_segment_type" required>
+            <!-- mappings from your logs -->
+            <option value="0">Aviation</option>
+            <option value="1">Complementary</option>
+            <option value="2">Corporate</option>
+            <option value="3">Offline</option>
+            <option value="4">Online</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="no_of_week_nights">Number of Week Nights</label>
+        <input type="number" id="no_of_week_nights" name="no_of_week_nights" required>
+    </div>
+
+    <div class="form-group">
+        <label for="no_of_weekend_nights">Number of Weekend Nights</label>
+        <input type="number" id="no_of_weekend_nights" name="no_of_weekend_nights" required>
+    </div>
+
+    <div class="form-group">
+        <label for="type_of_meal_plan">Type of Meal Plan</label>
+        <select id="type_of_meal_plan" name="type_of_meal_plan" required>
+            <!-- type_of_meal_plan: {'Meal Plan 1': 0, 'Meal Plan 2': 1, 'Meal Plan 3': 2, 'Not Selected': 3} -->
+            <option value="0">Meal Plan 1</option>
+            <option value="1">Meal Plan 2</option>
+            <option value="2">Meal Plan 3</option>
+            <option value="3">Not Selected</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="room_type_reserved">Room Type Reserved</label>
+        <select id="room_type_reserved" name="room_type_reserved" required>
+            <!-- room_type_reserved mapping -->
+            <option value="0">Room_Type 1</option>
+            <option value="1">Room_Type 2</option>
+            <option value="2">Room_Type 3</option>
+            <option value="3">Room_Type 4</option>
+            <option value="4">Room_Type 5</option>
+            <option value="5">Room_Type 6</option>
+            <option value="6">Room_Type 7</option>
+        </select>
+    </div>
+
+    <button type="submit">Predict Booking Status</button>
+</form>
+
+{% if prediction is not none %}
+    {% if prediction == 0 %}
+        <div class="result cancel">
+            Prediction: The customer is likely to <strong>CANCEL</strong> the reservation. (booking_status = Canceled)
+        </div>
+    {% elif prediction == 1 %}
+        <div class="result not-cancel">
+            Prediction: The customer will <strong>NOT CANCEL</strong> the reservation. (booking_status = Not_Canceled)
+        </div>
+    {% else %}
+        <div class="result">
+            Prediction code: {{ prediction }}
+        </div>
+    {% endif %}
+{% endif %}
+
+</body>
+</html>

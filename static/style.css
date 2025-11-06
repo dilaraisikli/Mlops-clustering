@@ -1,0 +1,184 @@
+/* Genel sayfa stili */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: radial-gradient(circle at top left, #e0f2ff, #f7f7f7);
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Başlık */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: #074a91;
+}
+
+.subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+/* Form container */
+.form-wrapper {
+    max-width: 720px;
+    width: 95%;
+    margin: 0 auto 30px auto;
+    background: #ffffff;
+    padding: 24px 22px 26px;
+    border-radius: 14px;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.15);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* Form grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 18px;
+}
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Form elemanları */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+label span.helper {
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: #6b7280;
+}
+
+input,
+select {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+    background-color: #f9fafb;
+    transition: all 0.15s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+}
+
+/* Buton */
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+button {
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    box-shadow: 0 10px 18px rgba(37, 99, 235, 0.3);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+}
+
+button:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 12px 22px rgba(37, 99, 235, 0.4);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* Tahmin sonucu */
+.result-container {
+    max-width: 720px;
+    width: 95%;
+    margin: 0 auto 40px auto;
+}
+
+.result {
+    margin-top: 12px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.98rem;
+    border: 1px solid transparent;
+}
+
+.result strong {
+    font-weight: 800;
+}
+
+.cancel {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.not-cancel {
+    background-color: #ecfdf3;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+/* Küçük info tagleri */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    margin-bottom: 10px;
+}
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background-color: #1d4ed8;
+}
+
+/* Footer gibi minik yazılar istersen */
+.footer-text {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-bottom: 16px;
+}
